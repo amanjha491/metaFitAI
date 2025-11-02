@@ -18,6 +18,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="activitiyService" />
+        <module name="eurekaService" />
       </profile>
     </annotationProcessing>
   </component>
@@ -25,6 +26,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="activitiyService" options="-parameters" />
       <module name="backendService" options="-parameters" />
+      <module name="eurekaService" options="-parameters" />
       <module name="userService" options="-parameters" />
     </option>
   </component>

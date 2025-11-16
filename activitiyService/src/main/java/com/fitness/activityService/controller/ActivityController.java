@@ -20,9 +20,4 @@ public class ActivityController {
     public ResponseEntity<ActivityResponse> trackActivity(@RequestBody ActivityRequest request){
         return ResponseEntity.ok(activityService.trackActivity(request));
     }
-
-    @GetMapping("/{activityId}")
-    public ResponseEntity<ActivityResponse> getActivity(@PathVariable String activityId){
-        return ResponseEntity.ok(activityService.getActivityById(activityId));
-    }
 }

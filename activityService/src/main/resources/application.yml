@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: activityService
+  data:
+    mongodb:
+      url: mongodb://localhost:27017/activityCapturedData
+      database: activityCapturedData

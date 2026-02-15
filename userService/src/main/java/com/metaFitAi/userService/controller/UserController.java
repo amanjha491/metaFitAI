@@ -16,19 +16,16 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> getUserProfile(@PathVariable String userId) {
-        System.out.println("into userId endpoint");
         return ResponseEntity.ok(userService.getUserProfile(userId));
     }
 
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterRequest request) {
-        System.out.println("into register endpoint");
         return ResponseEntity.ok(userService.register(request));
     }
 
     @GetMapping("/{userId}/validate")
     public ResponseEntity<Boolean> validateUser(@PathVariable String userId) {
-        System.out.println("into validation endpoint");
         return ResponseEntity.ok(userService.existByUserId(userId));
     }
 }

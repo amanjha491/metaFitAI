@@ -24,8 +24,18 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="demo" />
+      </profile>
+      <profile name="Annotation profile for activityService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="activityService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,6 +48,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="activitiyService" options="-parameters" />
+      <module name="activityService" options="-parameters" />
       <module name="aiService" options="-parameters" />
       <module name="backendService" options="-parameters" />
       <module name="demo" options="-parameters" />

@@ -1,0 +1,36 @@
+spring:
+  data:
+    mongodb:
+      url: mongodb://localhost:27017/aiResult
+      database: aiResult
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: activity-processor-group-v2
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.header: false
+        spring.json.value.default.type: com.metaFitAi.aiService.model.Activity
+        spring.json.trusted.packages: "*"
+kafka:
+  topic:
+    name: activity-events-v2
+
+groq:
+  api:
+    url: ${GROQ_URL}
+    key: ${GROQ_KEY}
+    model: llama-3.3-70b-versatile
+    role: user
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    serverUrl:
+      defaultZone: http://localhost:8761/eureka/

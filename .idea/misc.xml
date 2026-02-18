@@ -10,14 +10,13 @@
         <option value="$PROJECT_DIR$/aiService/pom.xml" />
         <option value="$PROJECT_DIR$/userService/pom.xml" />
         <option value="$PROJECT_DIR$/activityService/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/activitiyService/pom.xml" />
-        <option value="$PROJECT_DIR$/aiService/pom.xml" />
         <option value="$PROJECT_DIR$/backendService/pom.xml" />
-        <option value="$PROJECT_DIR$/eurekaService/pom.xml" />
       </set>
     </option>
   </component>

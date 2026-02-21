@@ -10,6 +10,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eureka" />
         <module name="configServer" />
+        <module name="gateway" />
       </profile>
       <profile name="Annotation profile for userService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -57,6 +58,7 @@
       <module name="demo" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="eurekaService" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="userService" options="-parameters" />
     </option>
   </component>

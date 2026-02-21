@@ -45,6 +45,7 @@
     <bytecodeTargetLevel>
       <module name="activitiyService" target="21" />
       <module name="backendService" target="21" />
+      <module name="demo" target="21" />
       <module name="eurekaService" target="21" />
     </bytecodeTargetLevel>
   </component>

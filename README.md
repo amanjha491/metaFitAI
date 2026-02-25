@@ -64,7 +64,8 @@ Each service can be built and run individually. Start the foundation services fi
 3. `gateway`
 4. `userService` / `activityService` / `aiService`
 
-Build and start services:
+**Build and start services:**
+   
    **Option A: Running locally with Maven**
    ```bash
    ./mvnw clean install

@@ -64,12 +64,19 @@ Each service can be built and run individually. Start the foundation services fi
 3. `gateway`
 4. `userService` / `activityService` / `aiService`
 
-To build and run a specific service:
-```bash
-cd <service_name>
-./mvnw clean install
-./mvnw spring-boot:run
-```
+Build and start services:
+   **Option A: Running locally with Maven**
+   ```bash
+   ./mvnw clean install
+   ./mvnw spring-boot:run
+   ```
+
+   **Option B: Running with Docker Compose** (Recommended)
+   Make sure you have Docker installed and running. Then execute the following command from the root directory:
+   ```bash
+   docker-compose up --build
+   ```
+   This will build the Docker images for all services and start them together.
 
 Ensure valid API Keys for Google Gemini or GROQ are available in your local configuration context prior to starting the `aiService`.
 

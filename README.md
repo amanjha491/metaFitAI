@@ -10,7 +10,7 @@
 
 ## 📖 Overview
 
-metaFitAI is a scalable microservices backend built with Java Spring Boot (v3.5) and Spring Cloud (v2025). It uses event-driven communication with Kafka and integrates AI capabilities using Google Gemini and GROQ to generate dynamic fitness recommendations. The system encompasses centralized configuration, service discovery, and API gateway routing to support long-term maintainability.
+metaFitAI is a scalable microservices backend built with Java Spring Boot (v3.5) and Spring Cloud (v2025). It uses event-driven communication with Kafka and integrates AI capabilities using GROQ to generate dynamic fitness recommendations. The system encompasses centralized configuration, service discovery, and API gateway routing to support long-term maintainability.
 
 ## 🛠️ Tech Stack
 
@@ -22,7 +22,7 @@ metaFitAI is a scalable microservices backend built with Java Spring Boot (v3.5)
 - **Service Discovery**: Netflix Eureka
 - **Configuration**: Spring Cloud Config Server
 - **Gateway**: Spring Cloud Gateway
-- **AI Integration**: Google Gemini / GROQ
+- **AI Integration**: GROQ
 
 ## 🏗️ Architecture Design & Services
 
@@ -33,7 +33,7 @@ The platform consists of specialized, independent microservices:
 3. **`gateway`**: API Gateway managing routing and acting as the external-facing entrypoint for all downstream services.
 4. **`userService`**: Service backed by PostgreSQL natively responsible for user profile management.
 5. **`activityService`**: Service backed by MongoDB for tracking physical activities/workouts, utilizing Kafka for asynchronous event propagation.
-6. **`aiService`**: Service interacting with Google Gemini / GROQ to provide intelligent insights, utilizing MongoDB for data storage and Kafka to subscribe to user and activity events.
+6. **`aiService`**: Service interacting with GROQ to provide intelligent insights, utilizing MongoDB for data storage and Kafka to subscribe to user and activity events.
 
 ## ⚙️ Setup & Installation
 
@@ -64,7 +64,7 @@ Each service can be built and run individually. Start the foundation services fi
 3. `gateway`
 4. `userService` / `activityService` / `aiService`
 
-**Build and start services:**
+### 4. Build and start services:
    
    **Option A: Running locally with Maven**
    ```bash
@@ -73,18 +73,19 @@ Each service can be built and run individually. Start the foundation services fi
    ```
 
    **Option B: Running with Docker Compose** (Recommended)
+   
    Make sure you have Docker installed and running. Then execute the following command from the root directory:
    ```bash
    docker-compose up --build
    ```
    This will build the Docker images for all services and start them together.
 
-Ensure valid API Keys for Google Gemini or GROQ are available in your local configuration context prior to starting the `aiService`.
+Ensure valid API Keys for GROQ are available in your local configuration context prior to starting the `aiService`.
 
 ## 🔄 Core Workflow
 
 1. **Client Interaction**: Clients invoke REST APIs through the unified `gateway` service endpoint.
 2. **User Profiles**: Manage accounts natively with `userService`.
 3. **Activity Capture**: Sync fitness activities to `activityService`.
-4. **AI Generation**: Relying on data across different service contexts, the `aiService` leverages Google Gemini / GROQ to construct specific, personalized AI fitness analytics.
+4. **AI Generation**: Relying on data across different service contexts, the `aiService` leverages GROQ to construct specific, personalized AI fitness analytics.
 5. **Event Pipeline**: Interactions that span across bounds trigger messages pushed via Apache Kafka.

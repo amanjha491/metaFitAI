@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class GroqService {
         this.webClient = webClientBuilder.build();
     }
 
+    @CircuitBreaker(name = "groqAi", fallbackMethod = "fallbackRecommendations")
     public String getRecommendations(String details) {
 
         Map<String, Object> requestBody = Map.of(
@@ -46,5 +48,11 @@ public class GroqService {
                 .block();
 
         return response;
+    }
+
+    public String fallbackRecommendations(String details, Throwable t) {
+        log.error("GROQ API failed, using fallback recommendations. Error: {}", t.getMessage());
+        return "Generic Recommendation: Due to high AI load, here are standard guidelines: Drink water, stretch, and maintain 10k steps. " +
+               "Your original details were logged.";
     }
 }

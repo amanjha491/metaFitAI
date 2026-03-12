@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 10s
+scrape_configs:
+  - job_name: 'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    # Wait for eureka discovery in actual environments, but statically for local docker:
+    static_configs:
+      - targets: ['gateway:8080', 'userservice:8081', 'activityservice:8082', 'aiservice:8083']

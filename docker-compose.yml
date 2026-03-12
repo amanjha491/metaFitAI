@@ -1,5 +1,30 @@
 version: '3.8'
+
 services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+
   eureka:
     build: ./eureka
     container_name: eureka
@@ -23,11 +48,13 @@ services:
     container_name: gateway
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
     depends_on:
       - eureka
       - configserver
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - redis
 
   userservice:
     build: ./userService
@@ -37,21 +64,25 @@ services:
       - configserver
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
 
+  # Horizontal Scaling Example
   activityservice:
     build: ./activityService
-    container_name: activityservice
+    deploy:
+      replicas: 2
     depends_on:
       - eureka
       - configserver
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
 
   aiservice:
     build: ./aiService
-    container_name: aiservice
     depends_on:
       - eureka
       - configserver
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=docker

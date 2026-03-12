@@ -10,4 +10,11 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
+	@org.springframework.context.annotation.Bean
+	public org.springframework.cloud.gateway.filter.ratelimit.KeyResolver userKeyResolver() {
+		return exchange -> reactor.core.publisher.Mono.just(
+				exchange.getRequest().getRemoteAddress().getAddress().getHostAddress()
+		);
+	}
+
 }

@@ -8,7 +8,7 @@ import com.metaFitAi.userService.models.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
+import org.springframework.cache.annotation.Cacheable;
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -49,6 +49,8 @@ public class UserService {
         return userResponse;
     }
 
+
+    @Cacheable(value = "userProfile", key = "#userId")
     public UserResponse getUserProfile(String userId) {
         User user = repository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));

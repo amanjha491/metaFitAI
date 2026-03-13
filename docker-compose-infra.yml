@@ -61,6 +61,15 @@ services:
     networks:
       - metafit-network
 
+  # Redis for Gateway Rate Limiting
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - metafit-network
+
 networks:
   metafit-network:
     name: metafit-network
@@ -70,3 +79,4 @@ volumes:
   postgres_data:
   mongo_ai_data:
   mongo_activity_data:
+

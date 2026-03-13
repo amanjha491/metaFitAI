@@ -1,6 +1,8 @@
 package com.metaFitAi.userService.services;
 
 import com.metaFitAi.userService.UserRepository;
+import com.metaFitAi.userService.dto.AuthResponse;
+import com.metaFitAi.userService.dto.LoginRequest;
 import com.metaFitAi.userService.dto.RegisterRequest;
 import com.metaFitAi.userService.dto.UserResponse;
 
@@ -15,6 +17,21 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository repository;
+    private final JwtService jwtService;
+
+    public AuthResponse login(LoginRequest request) {
+        User user = repository.findByEmail(request.getEmail());
+        if (user == null || !user.getPassword().equals(request.getPassword())) {
+            throw new RuntimeException("Invalid email or password");
+        }
+
+        String token = jwtService.generateToken(user.getId(), user.getEmail());
+        return AuthResponse.builder()
+                .token(token)
+                .userId(user.getId())
+                .email(user.getEmail())
+                .build();
+    }
 
     public UserResponse register(RegisterRequest request) {
 

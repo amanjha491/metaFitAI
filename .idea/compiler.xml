@@ -10,9 +10,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eureka" />
         <module name="configServer" />
-        <module name="gateway" />
       </profile>
-      <profile name="Annotation profile for userService" enabled="true">
+      <profile name="Annotation profile for gateway" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -22,6 +21,7 @@
         <module name="aiService" />
         <module name="activityService" />
         <module name="demo" />
+        <module name="gateway" />
         <module name="userService" />
       </profile>
     </annotationProcessing>

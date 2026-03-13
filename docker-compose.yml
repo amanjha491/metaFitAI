@@ -55,7 +55,6 @@ services:
 
   userservice:
     build: ./userService
-    container_name: userservice
     depends_on:
       eureka:
         condition: service_healthy
@@ -70,7 +69,6 @@ services:
 
   activityservice:
     build: ./activityService
-    container_name: activityservice
     depends_on:
       eureka:
         condition: service_healthy
@@ -85,7 +83,6 @@ services:
 
   aiservice:
     build: ./aiService
-    container_name: aiservice
     depends_on:
       eureka:
         condition: service_healthy

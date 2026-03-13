@@ -1,0 +1,23 @@
+# Environment variables
+.env
+.env.local
+
+# Build files
+**/target/
+**/build/
+.idea/
+*.class
+*.log
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+**/mvnw
+**/mvnw.cmd
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,13 +1,12 @@
 spring:
   data:
     mongodb:
-      url: mongodb://localhost:27017/aiResult
-      database: aiResult
+      uri: ${MONGO_AI_URI}
   jackson:
     serialization:
       write-dates-as-timestamps: false
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
       group-id: activity-processor-group-v2
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

@@ -1,13 +1,12 @@
 spring:
   data:
     mongodb:
-      url: mongodb://localhost:27017/activityCapturedData
-      database: activityCapturedData
+      uri: ${MONGO_ACTIVITY_URI}
   jackson:
     serialization:
       write-dates-as-timestamps: false
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
       properties:
         spring.json.add.type.headers: false

@@ -1,0 +1,72 @@
+
+
+services:
+  # Postgres for User Service
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=${DB_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-admin@123}
+      - POSTGRES_DB=userData
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - metafit-network
+
+  # Mongo for AI Service
+  mongo-ai:
+    image: mongo:latest
+    container_name: mongo-ai
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_ai_data:/data/db
+    networks:
+      - metafit-network
+
+  # Mongo for Activity Service
+  mongo-activity:
+    image: mongo:latest
+    container_name: mongo-activity
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo_activity_data:/data/db
+    networks:
+      - metafit-network
+
+  # Infrastructure: Kafka & Zookeeper
+  # Message Broker
+  kafka:
+    image: apache/kafka:3.7.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+    networks:
+      - metafit-network
+
+networks:
+  metafit-network:
+    name: metafit-network
+    driver: bridge
+
+volumes:
+  postgres_data:
+  mongo_ai_data:
+  mongo_activity_data:

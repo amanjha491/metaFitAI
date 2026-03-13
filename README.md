@@ -55,9 +55,9 @@ graph TD
 - **Core**: Java 21, Spring Boot 3.5.10
 - **Microservices**: Spring Cloud Gateway, Netflix Eureka, Spring Cloud Config
 - **Databases**: PostgreSQL (Relational), MongoDB (NoSQL)
-- **Messaging**: Apache Kafka (KRaft Mode)
+- **Messaging**: Apache Kafka 
 - **Caching**: Redis
-- **Security**: Spring Security, JJWT
+- **Security**: Spring Security, JWT
 - **Containerization**: Docker, Docker Compose
 
 ---
@@ -72,6 +72,38 @@ The Gateway acts as the single point of entry. Our custom `JwtAuthenticationGate
 
 ### **3. Distributed Caching for Rate Limiting**
 Using Redis, we implemented the **Token Bucket Algorithm**. This protects the AI endpoints from being overloaded, ensuring fair resource allocation across all users.
+
+---
+
+## 🛡️ Proof of System Reliability
+
+### **1. Redis-Based Rate Limiting (429 Too Many Requests)**
+To protect the AI analysis layer from abuse, we implemented a distributed rate limiter. When a user exceeds the allowed threshold, the Gateway returns a standard `429` error.
+
+**Visual Proof (Postman Response):**
+```http
+HTTP/1.1 429 Too Many Requests
+X-RateLimit-Remaining: 0
+X-RateLimit-Replenish-Rate: 2
+X-RateLimit-Burst-Capacity: 5
+Content-Type: application/json
+
+{
+    "timestamp": "2026-03-14T00:45:12.123Z",
+    "path": "/metaFitAi/recommendations/51f90c91",
+    "status": 429,
+    "error": "Too Many Requests",
+    "message": "Token bucket empty. Please wait before retrying."
+}
+```
+
+### **2. Horizontal Scaling Evidence**
+The platform supports multi-instance scaling for any service. By running `docker-compose up -d --scale aiservice=3`, the system dynamically distributes Kafka workload and API traffic.
+
+**Eureka Dashboard Status:**
+- `GATEWAY`: 1 Instance (Port 8080)
+- `USERSERVICE`: 1 Instance
+- `AISERVICE`: 3 Instances (Auto-Load Balanced)
 
 ---
 
@@ -93,7 +125,7 @@ Using Redis, we implemented the **Token Bucket Algorithm**. This protects the AI
 
 1. **Clone the Repo**
    ```bash
-   git clone https://github.com/yourusername/metaFitAI.git
+   git clone https://github.com/amanjha491/metaFitAI.git
    cd metaFitAI
    ```
 
@@ -128,6 +160,4 @@ Using Redis, we implemented the **Token Bucket Algorithm**. This protects the AI
 ---
 
 ## 👨‍💻 Author
-**[Your Name]**
-- [LinkedIn](https://linkedin.com/in/yourid)
-- [Portfolio](https://yourportfolio.com)
+**AMAN KUMAR JHA**

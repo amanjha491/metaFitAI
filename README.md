@@ -107,7 +107,7 @@ The platform supports multi-instance scaling for any service. By running `docker
 
 ---
 
-## 🚀 Impact (The XYZ Formula)
+## 🚀 Impact
 
 - **Accomplished** a **40% reduction in API response latency** by architecting an asynchronous event-driven system using **Apache Kafka** to offload complex AI recommendation processing.
 - **Accomplished** 100% protection of sensitive user health data by implementing a "Zero Trust" authentication layer via **Spring Cloud Gateway** and **JWT**.
@@ -130,7 +130,7 @@ The platform supports multi-instance scaling for any service. By running `docker
    ```
 
 2. **Configure Environment**
-   Open `.env` and fill in your keys:
+   Add `.env` with keys:
    ```env
    GROQ_KEY=your_key_here
    JWT_SECRET=your_long_secure_secret_here

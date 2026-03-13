@@ -9,6 +9,9 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+jwt:
+  secret: ${JWT_SECRET:5367566B5970337336763979244226452948404D6351665468576D5A71347437}
+
 server:
   port: 8081
 

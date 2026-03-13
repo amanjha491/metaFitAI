@@ -1,5 +1,7 @@
 package com.metaFitAi.userService.controller;
 
+import com.metaFitAi.userService.dto.AuthResponse;
+import com.metaFitAi.userService.dto.LoginRequest;
 import com.metaFitAi.userService.dto.RegisterRequest;
 import com.metaFitAi.userService.dto.UserResponse;
 import com.metaFitAi.userService.services.UserService;
@@ -22,6 +24,11 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(userService.register(request));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        return ResponseEntity.ok(userService.login(request));
     }
 
     @GetMapping("/{userId}/validate")

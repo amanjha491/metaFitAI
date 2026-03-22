@@ -1,5 +1,8 @@
 spring:
   data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: 6379
     mongodb:
       uri: ${MONGO_AI_URI}
   jackson:
@@ -25,6 +28,18 @@ groq:
     key: ${GROQ_KEY}
     model: llama-3.3-70b-versatile
     role: user
+
+  cache:
+    type: redis
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "metrics"
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 server:
   port: 8083

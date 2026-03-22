@@ -9,6 +9,24 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: 6379
+  cache:
+    type: redis
+    redis:
+      enable-statistics: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "metrics"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 jwt:
   secret: ${JWT_SECRET:5367566B5970337336763979244226452948404D6351665468576D5A71347437}
 

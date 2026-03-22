@@ -19,36 +19,39 @@
 
 ---
 
----
-
 ## 📸 System Proof (Scalability & Performance)
 
 ### 🖥️ Container Monitoring (CPU Usage)
 Demonstrates multiple services running concurrently in a containerized environment.
+
 ![CPU Dashboard](./assets/cpu-dashboard.png)
 
 ---
 
 ### 🧠 AI Recommendation Storage (MongoDB)
 Shows persisted AI-generated insights stored in MongoDB for scalability.
+
 ![MongoDB Data](./assets/mongodb-ai-data.png)
 
 ---
 
 ### ⚖️ Horizontal Scaling (Eureka Service Registry)
 AI Service scaled to multiple instances (3 pods), enabling load distribution and high availability.
+
 ![Eureka Scaling](./assets/eureka-scaling.png)
 
 ---
 
 ### 🚫 Rate Limiting (429 Too Many Requests)
 System enforcing API protection using Redis-based Token Bucket algorithm.
+
 ![Rate Limiting](./assets/rate-limit.png)
 
 ---
 
 ### ⚡ Redis Performance (Cache Efficiency)
 Keyspace hit/miss ratio demonstrating reduced database load and improved latency.
+
 ![Redis Metrics](./assets/redis-metrics.png)
 
 
@@ -121,8 +124,6 @@ The platform supports multi-instance scaling for any service. By running `docker
 
 ---
 
----
-
 ## 🎯 Why This Project?
 
 This project demonstrates real-world backend engineering concepts including:
@@ -192,13 +193,19 @@ Designed to simulate production-level backend systems handling high concurrency 
 **Aman Kumar Jha**  
 Backend Engineer | Java SpringBoot | Microservices  
 
-<p align="left">
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?size=22&duration=2500&color=36BCF7&center=true&vCenter=true&width=500&lines=Let's+Connect+🚀;Backend+Engineer+%7C+Java+%7C+Microservices" />
+</p>
+
+<p align="center">
   <a href="https://www.linkedin.com/in/aman-kumar-j-14baa4120/">
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin" />
   </a>
+  &nbsp;&nbsp;&nbsp;
   <a href="https://github.com/amanjha491">
     <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github" />
   </a>
+  &nbsp;&nbsp;&nbsp;
   <a href="https://leetcode.com/u/aman4sep1/">
     <img src="https://img.shields.io/badge/LeetCode-orange?style=for-the-badge&logo=leetcode" />
   </a>

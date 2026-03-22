@@ -9,6 +9,9 @@ import com.metaFitAi.userService.dto.UserResponse;
 import com.metaFitAi.userService.models.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,6 +36,7 @@ public class UserService {
                 .build();
     }
 
+    @CacheEvict(value = "userProfiles", key = "#result.id")
     public UserResponse register(RegisterRequest request) {
 
         if (repository.existsByEmail(request.getEmail())) {
@@ -66,6 +70,7 @@ public class UserService {
         return userResponse;
     }
 
+    @Cacheable(value = "userProfiles", key = "#userId")
     public UserResponse getUserProfile(String userId) {
         User user = repository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));

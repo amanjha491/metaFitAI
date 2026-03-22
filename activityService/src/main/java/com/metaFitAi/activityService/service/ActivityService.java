@@ -7,6 +7,8 @@ import com.metaFitAi.activityService.model.Activity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class ActivityService {
     @Value("${kafka.topic.name}")
     private String topicName;
 
+    @CacheEvict(value = "userActivities", key = "#request.userId")
     public ActivityResponse trackActivity(ActivityRequest request) {
 
         boolean isValidUser = userValidationService.validateUser(request.getUserId());
@@ -65,6 +68,7 @@ public class ActivityService {
     }
 
 
+    @Cacheable(value = "userActivities", key = "#userId")
     public List<ActivityResponse> getUserActivities(String userId) {
         List<Activity> activityList = activityRepository.findByUserId(userId);
         return activityList.stream()
